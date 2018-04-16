@@ -1,18 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var getData = require('../db/getJobList');
+var getRes;
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
     
-    var jobList = getData.getJobData();
-    res.json(jobList);
+    var jobList = getData.getJobData(ResponseBody);
+    getRes = res;
 });
 
-router.get('/test', function (req, res, next) {
-    
-    var jobList = getData.getJobData();
-    res.json(jobList);
-});
+function ResponseBody(resBody){
+    getRes.send(resBody);
+}
 
 module.exports = router;
